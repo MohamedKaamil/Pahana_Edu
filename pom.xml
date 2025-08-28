@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>Mega_City_Cab_Service_App</artifactId>
+    <artifactId>Pahana_Edu</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>Mega_City_Cab_Service_App</name>
+    <name>Pahana_Edu</name>
     <packaging>war</packaging>
 
     <properties>
