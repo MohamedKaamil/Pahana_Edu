@@ -1,0 +1,194 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > PersonFactoryService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.project.mega_city_cab_service_app.service.PersonService</a>
+</div>
+
+<h1>Coverage Summary for Class: PersonFactoryService (org.project.mega_city_cab_service_app.service.PersonService)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PersonFactoryService</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;//package org.example.mega_city_cab_service_app.service;
+&nbsp;//
+&nbsp;//import org.example.mega_city_cab_service_app.factory.PersonFactory;
+&nbsp;//import org.example.mega_city_cab_service_app.factory.managePersonFactory.CustomerFactory;
+&nbsp;//import org.example.mega_city_cab_service_app.factory.FactoryRegistry;
+&nbsp;//import org.example.mega_city_cab_service_app.factory.managePersonFactory.EmployeeFactory;
+&nbsp;//import org.example.mega_city_cab_service_app.util.JsonUtils;
+&nbsp;//
+&nbsp;//public class PersonFactoryService {
+&nbsp;//    public PersonFactory getFactory(String type, String jsonInput) {
+&nbsp;//        PersonFactory factory = FactoryRegistry.getFactory(type);
+&nbsp;//        if (factory == null) {
+&nbsp;//            return null;
+&nbsp;//        }
+&nbsp;//
+&nbsp;//        // Handle EmployeeFactory separately
+&nbsp;//        if (type.equalsIgnoreCase(&quot;EMPLOYEE&quot;)) {
+&nbsp;//            double salary = Double.parseDouble(JsonUtils.extractValueFromJson(jsonInput, &quot;salary&quot;));
+&nbsp;//            int experience = Integer.parseInt(JsonUtils.extractValueFromJson(jsonInput, &quot;experience&quot;));
+&nbsp;//            factory = new EmployeeFactory(salary, experience);
+&nbsp;//        }
+&nbsp;//        // this for customer
+&nbsp;//        else if (type.equalsIgnoreCase(&quot;CUSTOMER&quot;)) {
+&nbsp;//            int rating = Integer.parseInt(JsonUtils.extractValueFromJson(jsonInput, &quot;rating&quot;));
+&nbsp;//            String description = JsonUtils.extractValueFromJson(jsonInput, &quot;description&quot;);
+&nbsp;//            factory = new CustomerFactory(rating, description);
+&nbsp;//        }
+&nbsp;//        return factory;
+&nbsp;//    }
+&nbsp;//}
+&nbsp;package org.project.mega_city_cab_service_app.service.PersonService;
+&nbsp;import org.project.mega_city_cab_service_app.factory.Registry.PersonFactoryRegistry;
+&nbsp;import org.project.mega_city_cab_service_app.factory.Interface.PersonFactory;
+&nbsp;import org.project.mega_city_cab_service_app.factory.managePersonFactory.AdminFactory;
+&nbsp;import org.project.mega_city_cab_service_app.factory.managePersonFactory.CustomerFactory;
+&nbsp;import org.project.mega_city_cab_service_app.factory.managePersonFactory.DriverFactory;
+&nbsp;import org.project.mega_city_cab_service_app.factory.managePersonFactory.EmployeeFactory;
+&nbsp;/*
+&nbsp;public class PersonFactoryService {
+&nbsp;    public PersonFactory getFactory(String type, String jsonInput) {
+&nbsp;        if (type == null) return null;
+&nbsp;
+&nbsp;        switch (type.toUpperCase()) {
+&nbsp;            case &quot;ADMIN&quot;:
+&nbsp;                return new AdminFactory();
+&nbsp;            case &quot;EMPLOYEE&quot;:
+&nbsp;                double salary = Double.parseDouble(JsonUtils.extractValueFromJson(jsonInput, &quot;salary&quot;));
+&nbsp;                int experience = Integer.parseInt(JsonUtils.extractValueFromJson(jsonInput, &quot;experience&quot;));
+&nbsp;                return new EmployeeFactory(salary, experience);
+&nbsp;            case &quot;CUSTOMER&quot;:
+&nbsp;                int rating = Integer.parseInt(JsonUtils.extractValueFromJson(jsonInput, &quot;rating&quot;));
+&nbsp;                String description = JsonUtils.extractValueFromJson(jsonInput, &quot;description&quot;);
+&nbsp;                return new CustomerFactory(rating, description);
+&nbsp;            default:
+&nbsp;                return null;
+&nbsp;        }
+&nbsp;    }
+&nbsp;}*/
+&nbsp;
+&nbsp;public class PersonFactoryService {
+&nbsp;
+<b class="nc">&nbsp;    public PersonFactoryService() {</b>
+&nbsp;        // Register default factories during initialization
+<b class="nc">&nbsp;        PersonFactoryRegistry.registerFactory(&quot;ADMIN&quot;, new AdminFactory());</b>
+<b class="nc">&nbsp;        PersonFactoryRegistry.registerFactory(&quot;EMPLOYEE&quot;, new EmployeeFactory());</b>
+<b class="nc">&nbsp;        PersonFactoryRegistry.registerFactory(&quot;CUSTOMER&quot;, new CustomerFactory());</b>
+<b class="nc">&nbsp;        PersonFactoryRegistry.registerFactory(&quot;DRIVER&quot;, new DriverFactory());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public PersonFactory getFactory(String type) {
+<b class="nc">&nbsp;        PersonFactory factory = PersonFactoryRegistry.getFactory(type);</b>
+<b class="nc">&nbsp;        if (factory == null) {</b>
+<b class="nc">&nbsp;            throw new IllegalArgumentException(&quot;Invalid person type: &quot; + type);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return factory;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-03-11 16:58</div>
+</div>
+</body>
+</html>

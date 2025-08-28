@@ -1,0 +1,218 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > PersonRetrievalService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.project.mega_city_cab_service_app.service.PersonService</a>
+</div>
+
+<h1>Coverage Summary for Class: PersonRetrievalService (org.project.mega_city_cab_service_app.service.PersonService)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PersonRetrievalService</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/41)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.project.mega_city_cab_service_app.service.PersonService;
+&nbsp;
+&nbsp;import org.project.mega_city_cab_service_app.model.person.*;
+&nbsp;import org.project.mega_city_cab_service_app.model.Parent.Person;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;public class PersonRetrievalService {
+&nbsp;    private final PersonService personService;
+&nbsp;
+<b class="nc">&nbsp;    public PersonRetrievalService(PersonService personService) {</b>
+<b class="nc">&nbsp;        this.personService = personService;</b>
+&nbsp;    }
+&nbsp;    /**
+&nbsp;     * Retrieves a person by their mobile number and returns a JSON representation.
+&nbsp;     */
+&nbsp;    public String getPerson(String mobile) {
+<b class="nc">&nbsp;        Person person = personService.getPerson(mobile);</b>
+<b class="nc">&nbsp;        if (person != null) {</b>
+<b class="nc">&nbsp;            return buildPersonJson(person);</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            return &quot;{\&quot;error\&quot;: \&quot;Person not found.\&quot;}&quot;;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Retrieves a person by their ID and returns a JSON representation.
+&nbsp;     */
+&nbsp;    public String getPersonById(int id) {
+<b class="nc">&nbsp;        Person person = personService.getPersonById(id);</b>
+<b class="nc">&nbsp;        if (person != null) {</b>
+<b class="nc">&nbsp;            return buildPersonJson(person);</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            return &quot;{\&quot;error\&quot;: \&quot;Person not found.\&quot;}&quot;;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;    public String getAllPersonsByType(String type) {
+<b class="nc">&nbsp;        List&lt;Person&gt; persons = personService.getAllPersonsByType(type);</b>
+<b class="nc">&nbsp;        if (persons.isEmpty()) {</b>
+<b class="nc">&nbsp;            return &quot;{\&quot;error\&quot;: \&quot;No persons found for type: &quot; + type + &quot;\&quot;}&quot;;</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        StringBuilder jsonBuilder = new StringBuilder(&quot;[&quot;);</b>
+<b class="nc">&nbsp;        for (Person person : persons) {</b>
+<b class="nc">&nbsp;            jsonBuilder.append(buildPersonJson(person)).append(&quot;,&quot;);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        // Remove the trailing comma and close the JSON array
+<b class="nc">&nbsp;        if (jsonBuilder.length() &gt; 1) {</b>
+<b class="nc">&nbsp;            jsonBuilder.setLength(jsonBuilder.length() - 1);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        jsonBuilder.append(&quot;]&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        return jsonBuilder.toString();</b>
+&nbsp;    }
+&nbsp;    /**
+&nbsp;     * Builds a JSON string based on the type of the person.
+&nbsp;     */
+&nbsp;    private String buildPersonJson(Person person) {
+<b class="nc">&nbsp;        StringBuilder jsonBuilder = new StringBuilder();</b>
+&nbsp;
+&nbsp;        // Common fields for all types
+<b class="nc">&nbsp;        jsonBuilder.append(&quot;{\&quot;id\&quot;: &quot;).append(person.getId()) // Use the getId() method</b>
+<b class="nc">&nbsp;                .append(&quot;, \&quot;name\&quot;: \&quot;&quot;).append(person.getName()).append(&quot;\&quot;&quot;)</b>
+<b class="nc">&nbsp;                .append(&quot;, \&quot;address\&quot;: \&quot;&quot;).append(person.getAddress()).append(&quot;\&quot;&quot;)</b>
+<b class="nc">&nbsp;                .append(&quot;, \&quot;mobile\&quot;: \&quot;&quot;).append(person.getMobile()).append(&quot;\&quot;&quot;)</b>
+<b class="nc">&nbsp;                .append(&quot;, \&quot;type\&quot;: \&quot;&quot;).append(person.getType()).append(&quot;\&quot;&quot;);</b>
+&nbsp;
+&nbsp;        // Add type-specific fields
+<b class="nc">&nbsp;        switch (person.getType()) {</b>
+&nbsp;            case &quot;CUSTOMER&quot;:
+<b class="nc">&nbsp;                Customer customer = (Customer) person;</b>
+<b class="nc">&nbsp;                jsonBuilder.append(&quot;, \&quot;rating\&quot;: &quot;).append(customer.getRating())</b>
+<b class="nc">&nbsp;                        .append(&quot;, \&quot;description\&quot;: \&quot;&quot;).append(customer.getDescription()).append(&quot;\&quot;&quot;);</b>
+&nbsp;                break;
+&nbsp;
+&nbsp;            case &quot;EMPLOYEE&quot;:
+<b class="nc">&nbsp;                Employee employee = (Employee) person;</b>
+<b class="nc">&nbsp;                jsonBuilder.append(&quot;, \&quot;salary\&quot;: &quot;).append(employee.getSalary())</b>
+<b class="nc">&nbsp;                        .append(&quot;, \&quot;experience\&quot;: &quot;).append(employee.getExperience());</b>
+&nbsp;                break;
+&nbsp;
+&nbsp;            case &quot;DRIVER&quot;:
+<b class="nc">&nbsp;                Driver driver = (Driver) person;</b>
+<b class="nc">&nbsp;                jsonBuilder.append(&quot;, \&quot;salary\&quot;: &quot;).append(driver.getSalary())</b>
+<b class="nc">&nbsp;                        .append(&quot;, \&quot;experience\&quot;: &quot;).append(driver.getExperience())</b>
+<b class="nc">&nbsp;                        .append(&quot;, \&quot;licenseNumber\&quot;: \&quot;&quot;).append(driver.getLicenseNumber()).append(&quot;\&quot;&quot;)</b>
+<b class="nc">&nbsp;                        .append(&quot;, \&quot;licenseType\&quot;: \&quot;&quot;).append(driver.getLicenseType()).append(&quot;\&quot;&quot;);</b>
+&nbsp;                break;
+&nbsp;
+&nbsp;            case &quot;ADMIN&quot;:
+&nbsp;                // No additional fields for Admin, but you can add them if needed
+&nbsp;                break;
+&nbsp;
+&nbsp;            default:
+<b class="nc">&nbsp;                throw new IllegalArgumentException(&quot;Unsupported person type: &quot; + person.getType());</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        jsonBuilder.append(&quot;}&quot;);</b>
+<b class="nc">&nbsp;        return jsonBuilder.toString();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-03-11 16:58</div>
+</div>
+</body>
+</html>
